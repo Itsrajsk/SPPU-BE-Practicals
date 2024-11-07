@@ -25,3 +25,4 @@ contract ArithmeticOperations {
         return a / b;
     }
 }
+

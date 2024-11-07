@@ -24,3 +24,4 @@ contract EmployeeDetails {
         return (employee.id, employee.name, employee.salary, employee.joiningDate);
     }
 }
+

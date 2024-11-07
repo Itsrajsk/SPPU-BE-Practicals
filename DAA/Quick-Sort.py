@@ -102,3 +102,4 @@ print("Sorted Array using Randomized Quick Sort:",
 # Output:
 # Sorted Array using Deterministic Quick Sort: [1, 5, 7, 8, 9, 10]
 # Sorted Array using Randomized Quick Sort: [1, 5, 7, 8, 9, 10]
+

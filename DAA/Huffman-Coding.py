@@ -151,3 +151,4 @@ print("Decoded Text:", decoded_text)
 
 # Decoded Text:
 # this is an example for huffman encoding
+
