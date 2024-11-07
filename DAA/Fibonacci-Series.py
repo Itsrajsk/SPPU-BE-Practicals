@@ -1,78 +1,97 @@
-# Fibonacci Program with Step Counting and Explanations
+# Non-Recursive (Iterative) Fibonacci Function
 
-# Function to calculate Fibonacci numbers and count steps
-def fibonacci(n):
+# Function to calculate Fibonacci iteratively
+def fibonacci_iterative(n):
+    # Base case: return n if it's 0 or 1
+    if n <= 1:
+        return n
+
     # Initialize first two Fibonacci numbers
     a, b = 0, 1
-    # Step counter initialized to 0
-    step_count = 0
 
-    # Loop through the range to find Fibonacci up to n
-    for i in range(n):
-        # Increment step count in each loop iteration
-        step_count += 1
-        # Swap values: a gets value of b, b gets sum of a and b
-        a, b = b, a + b
+    # Loop to calculate Fibonacci for n using iterative approach
+    for _ in range(2, n+1):
+        a, b = b, a + b  # Update values for next Fibonacci number
 
-    # Return nth Fibonacci number and step count
-    return a, step_count
+    return b  # Return the nth Fibonacci number
 
 
-# User input for Fibonacci number position
-n = int(input("Enter the position of the Fibonacci number you want: "))
+# Recursive Fibonacci Function
 
-# Calculate Fibonacci number and steps taken
-fib_num, steps = fibonacci(n)
+# Function to calculate Fibonacci recursively
+def fibonacci_recursive(n):
+    # Base case: return n if it's 0 or 1
+    if n <= 1:
+        return n
 
-# Display the result
-print(f"The {n}th Fibonacci number is: {fib_num}")
-print(f"Total steps taken to compute: {steps}")
+    # Recursive call to calculate Fibonacci number
+    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+
+
+# User input for Fibonacci number to calculate
+n = int(input("Enter the Fibonacci number (n) to calculate: "))  # Example: n = 10
+
+# Print Results for both approaches
+print("Iterative Fibonacci of", n, ":",
+      fibonacci_iterative(n))  # Iterative result
+print("Recursive Fibonacci of", n, ":",
+      fibonacci_recursive(n))  # Recursive result
+
 
 # Explanation:
-# - The program defines a function `fibonacci` that takes a number `n` as input.
-# - This function calculates the nth Fibonacci number using an iterative approach.
-# - Inside the function:
-#   - Variables `a` and `b` store the two preceding Fibonacci numbers.
-#   - The `step_count` variable tracks the number of iterations (steps) taken.
-#   - For each iteration, we compute the next Fibonacci number by adding the previous two.
-# - After the loop completes, the function returns the nth Fibonacci number and the step count.
-# - The main part of the program asks for user input to get the position of the Fibonacci number.
-# - It then calls the `fibonacci` function and prints the calculated Fibonacci number along with step count.
+# - The `fibonacci_iterative` function calculates the nth Fibonacci number iteratively.
+# - It initializes two variables, `a` and `b`, to hold the first two Fibonacci numbers (0 and 1).
+# - Then, it uses a loop to iteratively compute the Fibonacci number for n.
+#
+# - The `fibonacci_recursive` function calculates the nth Fibonacci number using recursion.
+# - The function calls itself recursively for `n-1` and `n-2`, which are the two previous Fibonacci numbers.
 
-# Q&A Section
 
-# Q1: What is the purpose of the `fibonacci` function?
-# A1: It calculates the nth Fibonacci number and counts the number of steps taken.
+# Time and Space Complexity Analysis:
+# - Time complexity (Iterative): O(n) because we loop through n elements.
+# - Space complexity (Iterative): O(1) because we only store two variables, `a` and `b`.
+#
+# - Time complexity (Recursive): O(2^n) because each recursive call makes two additional recursive calls.
+# - Space complexity (Recursive): O(n) because of the recursion stack that grows linearly with the input n.
 
-# Q2: Why do we initialize `a` and `b` to 0 and 1?
-# A2: `a` and `b` represent the first two numbers in the Fibonacci sequence.
 
-# Q3: What does `a, b = b, a + b` do?
-# A3: It updates `a` and `b` to the next two numbers in the sequence.
+# Q&A Section:
 
-# Q4: How does the `step_count` variable work?
-# A4: It increments by 1 in each loop iteration to count the steps taken to reach the nth Fibonacci number.
+# Q1: What is the difference between the iterative and recursive approaches?
+# A1: The iterative approach uses a loop to calculate Fibonacci numbers, while the recursive approach calls itself for smaller subproblems.
 
-# Q5: What does `int(input(...))` do in the program?
-# A5: It prompts the user for input, converts it to an integer, and assigns it to `n`.
+# Q2: Why does the recursive approach have exponential time complexity (O(2^n))?
+# A2: The recursive approach calculates the same Fibonacci numbers multiple times for different branches, leading to redundant computations.
 
-# Q6: What happens if the user enters a non-integer input?
-# A6: The program will raise a ValueError if the input is not an integer.
+# Q3: How does the iterative approach improve performance over the recursive one?
+# A3: The iterative approach avoids redundant calculations by directly using a loop to calculate the Fibonacci number, which is much more efficient.
 
-# Q7: Why do we return `a` and `step_count` from the `fibonacci` function?
-# A7: `a` contains the nth Fibonacci number, and `step_count` gives the total number of steps taken.
+# Q4: What is the base case in both the recursive and iterative solutions?
+# A4: The base case is when n is 0 or 1, where the function directly returns the value of n without further calculations.
 
-# Q8: How is the nth Fibonacci number displayed to the user?
-# A8: Using the `print` function, it shows both the Fibonacci number and the step count on the console.
+# Q5: How does the iterative solution calculate Fibonacci numbers?
+# A5: It initializes two variables (0 and 1) for the first two Fibonacci numbers and uses a loop to update these values iteratively.
 
-# Q9: How does this iterative approach differ from a recursive approach?
-# A9: The iterative approach is more efficient and avoids the overhead of multiple function calls, which are required in a recursive approach.
+# Q6: How does the recursive solution calculate Fibonacci numbers?
+# A6: It calls itself recursively with the values n-1 and n-2, summing them to get the nth Fibonacci number.
 
-# Q10: What is the time complexity of this Fibonacci program?
-# A10: The time complexity is O(n), as the program calculates each Fibonacci number in a single loop.
+# Q7: What are the space complexity implications of recursion?
+# A7: In recursion, the space complexity is O(n) due to the recursion stack, which stores intermediate function calls.
 
-# Example of Input:
-# Suppose the user enters 5.
+# Q8: Can the recursive solution be optimized?
+# A8: Yes, the recursive solution can be optimized using memoization (storing previously computed Fibonacci values) to reduce time complexity to O(n).
+
+# Q9: Why does the iterative solution have a space complexity of O(1)?
+# A9: The iterative solution uses only two variables (`a` and `b`) to store the Fibonacci values, which does not depend on the size of the input.
+
+# Q10: For large inputs, which approach would you prefer and why?
+# A10: The iterative approach is preferred for large inputs due to its O(n) time complexity and O(1) space complexity, making it much more efficient than the recursive approach.
+
+
+# Example Input and Output:
+# Input:
+# Enter the Fibonacci number (n) to calculate: 10
+#
 # Output:
-# The 5th Fibonacci number is: 5
-# Total steps taken to compute: 5
+# Iterative Fibonacci of 10 : 55
+# Recursive Fibonacci of 10 : 55
